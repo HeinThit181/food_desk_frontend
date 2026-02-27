@@ -1,5 +1,17 @@
 const API_BASE = "/api";
 
+// Safely parse JSON — if the server returns an HTML error page, give a readable message
+async function safeJson(res) {
+    const text = await res.text();
+    try {
+        return JSON.parse(text);
+    } catch {
+        // Server returned HTML (e.g. 413 Payload Too Large, 500 error page)
+        const status = res.status;
+        throw new Error(`Server error (${status}): Response was not JSON. The image may be too large, or the server encountered an error.`);
+    }
+}
+
 const mapId = (item) => {
     if (!item) return item;
     if (Array.isArray(item)) return item.map(mapId);
@@ -22,7 +34,7 @@ export const api = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(product),
         });
-        const data = await res.json();
+        const data = await safeJson(res);
         if (!res.ok) throw new Error(data.error || "Failed to create product");
         return mapId(data);
     },
@@ -32,7 +44,7 @@ export const api = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updates),
         });
-        const data = await res.json();
+        const data = await safeJson(res);
         if (!res.ok) throw new Error(data.error || "Failed to update product");
         return mapId(data);
     },
