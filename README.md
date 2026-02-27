@@ -248,13 +248,13 @@
   <hr/>
 
   <p><strong>Staff Login</strong><br>
-    Email - john@example.com
+    Email - john@example.com<br>
     Password - john12345
-    <br>
-    Email - james@example.com
+    <br><br>
+    Email - james@example.com<br>
     Password - james12345
-    <br>
-    Email - melida@example.com
+    <br><br>
+    Email - melida@example.com<br>
     Password - melida12345
   </p>
     
