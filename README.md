@@ -245,5 +245,19 @@
     Deployment: Azure
   </p>
 
+  <hr/>
+
+  <p><strong>Staff Login</strong><br>
+    Email - john@example.com
+    Password - john12345
+    <br>
+    Email - james@example.com
+    Password - james12345
+    <br>
+    Email - melida@example.com
+    Password - melida12345
+  </p>
+    
+
 </body>
 </html>
